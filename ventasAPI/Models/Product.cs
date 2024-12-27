@@ -1,0 +1,18 @@
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ventasAPI.Models
+{
+    public class Product
+    {
+        [Key]
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public double Price { get; set; }
+        public string Details { get; set; }
+        public DateTime ManufacturingDate { get; set; }
+        public DateTime ExpiryDate { get; set; }
+
+        //Navigation
+        public ICollection<InvoiceDetail> InvoiceDetails { get; set; }  //Navigation
+    }
+}
