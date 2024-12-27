@@ -5,13 +5,19 @@ namespace ventasAPI.Models
 {
     public class Invoice
     {
+        public Invoice()
+        {
+            Status = true;
+            Code = Guid.NewGuid();
+        }
         [Key]
         public int Id { get; set; }
 
+        [Required]
         public DateTime Date { get; set; }
         public Boolean Status { get; set; }
 
-
+        public Guid Code { get; set; } = Guid.NewGuid();
         [ForeignKey("SellerId")]
         public int SellerId { get; set; }
         public Seller Seller { get; set; }

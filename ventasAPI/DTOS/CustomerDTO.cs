@@ -8,7 +8,6 @@ namespace ventasAPI.DTOS
 {
     public class CustomerDTO
     {
-        private AutoMapperProfile mapper;
 
         [Required]
         public string Name { get; set; }
@@ -24,6 +23,8 @@ namespace ventasAPI.DTOS
         public long Document { get; set; }
         [Required]
         public Gender Gender { get; set; }
+        [Required]
+        public string ImageURL { get; set; }
 
 
     }

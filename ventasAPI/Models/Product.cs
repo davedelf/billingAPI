@@ -11,6 +11,11 @@ namespace ventasAPI.Models
         public string Details { get; set; }
         public DateTime ManufacturingDate { get; set; }
         public DateTime ExpiryDate { get; set; }
+        [Required]
+        [MaxLength(10)]
+        public string Code { get; set; }
+        [Required]
+        public string ImageURL { get; set; }
 
         //Navigation
         public ICollection<InvoiceDetail> InvoiceDetails { get; set; }  //Navigation

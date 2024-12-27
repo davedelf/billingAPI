@@ -21,5 +21,11 @@ namespace ventasAPI.Models
         public Gender Gender { get; set; }
         [Required]
         public DateTime Birthday { get; set; }
+        [Required]
+        [EmailAddress]
+        [MaxLength(80)]
+        public string Email { get; set; }
+        [Required]
+        public string ImageURL { get; set; }
     }
 }

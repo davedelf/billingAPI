@@ -1,14 +1,24 @@
-﻿using ventasAPI.Services;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
+using ventasAPI.Services;
 
 namespace ventasAPI.DTOS
 {
     public class ProductDTO
     {
-        private AutoMapperProfile mapper;
+        [Required]
         public string Name { get; set; }
+        [Required]
         public double Price { get; set; }
+        [Required]
         public string Details { get; set; }
+        [Required]
         public DateTime ManufacturingDate { get; set; }
+        [Required]
         public DateTime ExpiryDate { get; set; }
+
+        [Required]
+        public string ImageURL { get; set; }
+
     }
 }

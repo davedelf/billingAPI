@@ -15,10 +15,14 @@ namespace ventasAPI.Services
             CreateMap<SellerDTO, Seller>();
 
             CreateMap<Invoice, InvoiceDTO>();
-            CreateMap<InvoiceDTO, InvoiceDTO>();
+            CreateMap<InvoiceDTO, Invoice>()
+                .ForMember(dest=>dest.Id, opt=> opt.Ignore()); //Ignora el campo Id
 
             CreateMap<Product,ProductDTO>();
             CreateMap<ProductDTO,Product>();
+
+            CreateMap<InvoiceDetail, InvoiceDetailDTO>();
+            CreateMap<InvoiceDetailDTO, InvoiceDetail>();
         }
     }
 }
