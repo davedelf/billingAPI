@@ -2,8 +2,10 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ventasAPI.Models
 {
@@ -20,6 +22,7 @@ namespace ventasAPI.Models
         [Required]
         public Gender Gender { get; set; }
         [Required]
+        [Column(TypeName ="date")]
         public DateTime Birthday { get; set; }
         [Required]
         [EmailAddress]

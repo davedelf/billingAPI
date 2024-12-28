@@ -158,6 +158,58 @@
   },
   {
     "ContainingType": "ventasAPI.Controllers.InvoiceController",
+    "Method": "GetInvoiceAndDetails",
+    "RelativePath": "api/invoices/GetInvoiceAndDetailsByCode",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "invoiceCode",
+        "Type": "System.Guid",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "ventasAPI.DTOS.InvoiceDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ventasAPI.Controllers.InvoiceController",
+    "Method": "GetInvoiceAndDetails",
+    "RelativePath": "api/invoices/GetInvoiceAndDetailsById",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "invoiceId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "ventasAPI.DTOS.InvoiceDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ventasAPI.Controllers.InvoiceController",
     "Method": "GetInvoiceDetailsByInvoice",
     "RelativePath": "api/invoices/getInvoiceDetailsByCode",
     "HttpMethod": "GET",
@@ -199,6 +251,58 @@
     "ReturnTypes": [
       {
         "Type": "System.Collections.Generic.IEnumerable\u00601[[ventasAPI.DTOS.InvoiceDetailDTO, ventasAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ventasAPI.Controllers.InvoiceController",
+    "Method": "GetInvoicesCustomer",
+    "RelativePath": "api/invoices/GetInvoicesAndDetailsByCustomerDocument",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customerDocument",
+        "Type": "System.Int64",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ventasAPI.DTOS.InvoiceDTO, ventasAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ventasAPI.Controllers.InvoiceController",
+    "Method": "GetInvoicesSeller",
+    "RelativePath": "api/invoices/GetInvoicesAndDetailsBySellerDocument",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "sellerDocument",
+        "Type": "System.Int64",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ventasAPI.DTOS.InvoiceDTO, ventasAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",

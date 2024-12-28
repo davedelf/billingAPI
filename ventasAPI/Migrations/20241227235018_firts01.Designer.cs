@@ -12,8 +12,8 @@ using ventasAPI;
 namespace ventasAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241227073738_InvoiceController")]
-    partial class InvoiceController
+    [Migration("20241227235018_firts01")]
+    partial class firts01
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,7 +34,7 @@ namespace ventasAPI.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("Birthday")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.Property<long>("Document")
                         .HasColumnType("bigint");
@@ -47,6 +47,10 @@ namespace ventasAPI.Migrations
                     b.Property<int>("Gender")
                         .HasColumnType("int");
 
+                    b.Property<string>("ImageURL")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -57,7 +61,7 @@ namespace ventasAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customers");
+                    b.ToTable("Customers", (string)null);
                 });
 
             modelBuilder.Entity("ventasAPI.Models.Invoice", b =>
@@ -68,10 +72,8 @@ namespace ventasAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasMaxLength(12)
-                        .HasColumnType("nvarchar(12)");
+                    b.Property<Guid>("Code")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
@@ -130,8 +132,8 @@ namespace ventasAPI.Migrations
 
                     b.Property<string>("Code")
                         .IsRequired()
-                        .HasMaxLength(12)
-                        .HasColumnType("nvarchar(12)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("Details")
                         .IsRequired()
@@ -139,6 +141,10 @@ namespace ventasAPI.Migrations
 
                     b.Property<DateTime>("ExpiryDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ImageURL")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ManufacturingDate")
                         .HasColumnType("datetime2");
@@ -164,7 +170,7 @@ namespace ventasAPI.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("Birthday")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.Property<long>("Document")
                         .HasColumnType("bigint");
@@ -177,6 +183,10 @@ namespace ventasAPI.Migrations
                     b.Property<int>("Gender")
                         .HasColumnType("int");
 
+                    b.Property<string>("ImageURL")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -187,21 +197,21 @@ namespace ventasAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Sellers");
+                    b.ToTable("Sellers", (string)null);
                 });
 
             modelBuilder.Entity("ventasAPI.Models.Invoice", b =>
                 {
                     b.HasOne("ventasAPI.Models.Customer", "Customer")
-                        .WithMany()
+                        .WithMany("Invoices")
                         .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("ventasAPI.Models.Seller", "Seller")
-                        .WithMany()
+                        .WithMany("Invoices")
                         .HasForeignKey("SellerId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Customer");
@@ -228,6 +238,11 @@ namespace ventasAPI.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("ventasAPI.Models.Customer", b =>
+                {
+                    b.Navigation("Invoices");
+                });
+
             modelBuilder.Entity("ventasAPI.Models.Invoice", b =>
                 {
                     b.Navigation("InvoiceDetails");
@@ -236,6 +251,11 @@ namespace ventasAPI.Migrations
             modelBuilder.Entity("ventasAPI.Models.Product", b =>
                 {
                     b.Navigation("InvoiceDetails");
+                });
+
+            modelBuilder.Entity("ventasAPI.Models.Seller", b =>
+                {
+                    b.Navigation("Invoices");
                 });
 #pragma warning restore 612, 618
         }

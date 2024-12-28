@@ -31,7 +31,7 @@ namespace ventasAPI.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("Birthday")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.Property<long>("Document")
                         .HasColumnType("bigint");
@@ -58,7 +58,7 @@ namespace ventasAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customers");
+                    b.ToTable("Customers", (string)null);
                 });
 
             modelBuilder.Entity("ventasAPI.Models.Invoice", b =>
@@ -90,7 +90,7 @@ namespace ventasAPI.Migrations
 
                     b.HasIndex("SellerId");
 
-                    b.ToTable("Invoices");
+                    b.ToTable("Invoices", (string)null);
                 });
 
             modelBuilder.Entity("ventasAPI.Models.InvoiceDetail", b =>
@@ -116,7 +116,7 @@ namespace ventasAPI.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("InvoiceDetails");
+                    b.ToTable("InvoiceDetails", (string)null);
                 });
 
             modelBuilder.Entity("ventasAPI.Models.Product", b =>
@@ -155,7 +155,7 @@ namespace ventasAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("ventasAPI.Models.Seller", b =>
@@ -167,7 +167,7 @@ namespace ventasAPI.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("Birthday")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.Property<long>("Document")
                         .HasColumnType("bigint");
@@ -194,21 +194,21 @@ namespace ventasAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Sellers");
+                    b.ToTable("Sellers", (string)null);
                 });
 
             modelBuilder.Entity("ventasAPI.Models.Invoice", b =>
                 {
                     b.HasOne("ventasAPI.Models.Customer", "Customer")
-                        .WithMany()
+                        .WithMany("Invoices")
                         .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("ventasAPI.Models.Seller", "Seller")
-                        .WithMany()
+                        .WithMany("Invoices")
                         .HasForeignKey("SellerId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Customer");
@@ -235,6 +235,11 @@ namespace ventasAPI.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("ventasAPI.Models.Customer", b =>
+                {
+                    b.Navigation("Invoices");
+                });
+
             modelBuilder.Entity("ventasAPI.Models.Invoice", b =>
                 {
                     b.Navigation("InvoiceDetails");
@@ -243,6 +248,11 @@ namespace ventasAPI.Migrations
             modelBuilder.Entity("ventasAPI.Models.Product", b =>
                 {
                     b.Navigation("InvoiceDetails");
+                });
+
+            modelBuilder.Entity("ventasAPI.Models.Seller", b =>
+                {
+                    b.Navigation("Invoices");
                 });
 #pragma warning restore 612, 618
         }

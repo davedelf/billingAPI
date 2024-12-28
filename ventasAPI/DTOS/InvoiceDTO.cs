@@ -11,7 +11,7 @@ namespace ventasAPI.DTOS
         public DateTime Date { get; set; }
         [JsonIgnore]
        public Boolean Status { get; set; }
-        [JsonIgnore]
+
         public Guid Code { get; set; }
         public int SellerId { get; set; }
         public int CustomerId { get; set; }

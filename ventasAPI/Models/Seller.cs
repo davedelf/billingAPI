@@ -4,13 +4,8 @@ namespace ventasAPI.Models
 {
     public class Seller:User
     {
-
         //Navigation
-        private ICollection<Invoice> Invoices { get; set; }
+        public ICollection<Invoice> Invoices { get; set; }
 
-
-
-
-        
     }
 }

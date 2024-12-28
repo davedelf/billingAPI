@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection.Metadata;
 using ventasAPI.DTOS;
-using ventasAPI.Migrations;
 using ventasAPI.Models;
 
 namespace ventasAPI.Controllers
@@ -184,8 +183,7 @@ namespace ventasAPI.Controllers
         [HttpPost("PostInvoiceWithDetails")]
         public async Task<ActionResult> CreateInvoice(InvoiceDTO invoiceDto)
         {
-            var invoice =  _mapper.Map<Invoice>(invoiceDto);
-            //invoice.Code = Guid.NewGuid();
+            var invoice = _mapper.Map<Invoice>(invoiceDto);
             invoice.Code = Guid.NewGuid();
             _context.Invoices.Add(invoice);
             await _context.SaveChangesAsync();
@@ -200,10 +198,135 @@ namespace ventasAPI.Controllers
             _context.InvoiceDetails.AddRange(invoiceDetails);
             await _context.SaveChangesAsync();
 
-            return Ok(new { message = "Invoice and its details created successfully" });
+            return Ok(new { message = "Invoice and its invoiceDetails created successfully" });
         }
-            
-       
 
+        [HttpGet("GetInvoiceAndDetailsById")]
+        public async Task<ActionResult<InvoiceDTO>> GetInvoiceAndDetails(int invoiceId)
+        {
+            var invoice = await _context.Invoices.FirstOrDefaultAsync(i => i.Id == invoiceId);
+            if (invoice == null)
+            {
+                return NotFound($"Invoice {invoiceId} not found");
+
+            }
+            var invoiceDetails = await _context.InvoiceDetails
+                .Where(det => det.InvoiceId == invoiceId)
+                .ToListAsync();
+
+            var invoiceDto = _mapper.Map<InvoiceDTO>(invoice);
+            var invoiceDetailsDto = new List<InvoiceDetailDTO>();
+
+            foreach(var invoiceDet in invoiceDetails)
+            {
+                invoiceDetailsDto.Add(_mapper.Map<InvoiceDetailDTO>(invoiceDet));
+            }
+
+            invoiceDto.InvoiceDetailsDto = invoiceDetailsDto;
+
+            return Ok(invoiceDto);
+        }
+
+        [HttpGet("GetInvoiceAndDetailsByCode")]
+        public async Task<ActionResult<InvoiceDTO>> GetInvoiceAndDetails(Guid invoiceCode)
+        {
+            var invoice = await _context.Invoices.FirstOrDefaultAsync(i => i.Code == invoiceCode);
+            if (invoice == null)
+            {
+                return NotFound($"Invoice {invoiceCode} not found");
+
+            }
+            var invoiceDetails = await _context.InvoiceDetails
+                .Where(det => det.InvoiceId == invoice.Id)
+                .ToListAsync();
+
+            var invoiceDto = _mapper.Map<InvoiceDTO>(invoice);
+            var invoiceDetailsDto = new List<InvoiceDetailDTO>();
+
+            foreach (var invoiceDet in invoiceDetails)
+            {
+                invoiceDetailsDto.Add(_mapper.Map<InvoiceDetailDTO>(invoiceDet));
+            }
+
+            invoiceDto.InvoiceDetailsDto = invoiceDetailsDto;
+
+            return Ok(invoiceDto);
+        }
+
+
+        [HttpGet("GetInvoicesAndDetailsByCustomerDocument")]
+        public async Task<ActionResult<IEnumerable<InvoiceDTO>>> GetInvoicesCustomer(long customerDocument)
+        {
+            var customer = await _context.Customers.FirstOrDefaultAsync(c => c.Document == customerDocument);
+            if (customer == null)
+            {
+                return NotFound("Invoices not found");
+            }
+
+            var invoices = await _context.Invoices
+                .Where(i => i.Customer.Document == customerDocument)
+                .Include(i => i.InvoiceDetails)
+                .ToListAsync();
+
+            var invoicesDto=new List<InvoiceDTO>();
+
+            foreach(Invoice invoice in invoices)
+            {
+                var invoiceDto=_mapper.Map<InvoiceDTO>(invoice);
+                var invoiceDetailsDto = new List<InvoiceDetailDTO>();
+                foreach(InvoiceDetail detail in invoice.InvoiceDetails)
+                {
+                    invoiceDetailsDto
+                        .Add(_mapper.Map<InvoiceDetailDTO>(detail));
+                        
+                }
+                invoiceDto.InvoiceDetailsDto= invoiceDetailsDto;
+                
+                invoicesDto.Add(invoiceDto);
+            }
+
+            return Ok(invoicesDto);
+
+            
+        }
+
+
+        [HttpGet("GetInvoicesAndDetailsBySellerDocument")]
+        public async Task<ActionResult<IEnumerable<InvoiceDTO>>> GetInvoicesSeller(long sellerDocument)
+        {
+            var seller = await _context.Sellers.FirstOrDefaultAsync(s => s.Document == sellerDocument);
+            if (seller == null)
+            {
+                return NotFound("Invoices not found");
+            }
+
+            var invoices = await _context.Invoices
+                .Where(i => i.Seller.Document == sellerDocument)
+                .Include(i => i.InvoiceDetails)
+                .ToListAsync();
+
+            var invoicesDto = new List<InvoiceDTO>();
+
+            foreach (Invoice invoice in invoices)
+            {
+                var invoiceDto = _mapper.Map<InvoiceDTO>(invoice);
+                var invoiceDetailsDto = new List<InvoiceDetailDTO>();
+                foreach (InvoiceDetail detail in invoice.InvoiceDetails)
+                {
+                    invoiceDetailsDto
+                        .Add(_mapper.Map<InvoiceDetailDTO>(detail));
+
+                }
+                invoiceDto.InvoiceDetailsDto = invoiceDetailsDto;
+
+                invoicesDto.Add(invoiceDto);
+            }
+
+            return Ok(invoicesDto);
+
+
+        }
     }
+
+    
 }

@@ -18,13 +18,14 @@ namespace ventasAPI.Models
         public Boolean Status { get; set; }
 
         public Guid Code { get; set; } = Guid.NewGuid();
-        [ForeignKey("SellerId")]
+
+
+
         public int SellerId { get; set; }
         public Seller Seller { get; set; }
 
 
 
-        [ForeignKey("CustomerId")]
         public int CustomerId { get; set; }
         public Customer Customer { get; set; }
 

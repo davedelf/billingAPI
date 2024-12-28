@@ -6,7 +6,7 @@ namespace ventasAPI.Models
     {
 
         //Navigation
-        private ICollection<Invoice> Invoices { get; set; }
+        public ICollection<Invoice> Invoices { get; set; }
 
 
     }
