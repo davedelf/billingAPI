@@ -1004,7 +1004,6 @@
           "document",
           "email",
           "gender",
-          "imageURL",
           "lastName",
           "name"
         ],
@@ -1034,10 +1033,6 @@
           },
           "gender": {
             "$ref": "#/components/schemas/Gender"
-          },
-          "imageURL": {
-            "minLength": 1,
-            "type": "string"
           }
         },
         "additionalProperties": false
@@ -1138,7 +1133,6 @@
           "document",
           "email",
           "gender",
-          "imageURL",
           "lastName",
           "name"
         ],
@@ -1168,10 +1162,6 @@
           },
           "gender": {
             "$ref": "#/components/schemas/Gender"
-          },
-          "imageURL": {
-            "minLength": 1,
-            "type": "string"
           }
         },
         "additionalProperties": false

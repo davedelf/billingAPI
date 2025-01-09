@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "FEOttiz3v+4=",
+  "dgSpecHash": "DRlfsVtDvt4=",
   "success": true,
-  "projectFilePath": "C:\\Users\\david\\OneDrive\\Documentos\\billingAPI\\ventasAPI\\ventasAPI.csproj",
+  "projectFilePath": "C:\\Users\\david\\Documents\\Proyectos\\billingAPI\\ventasAPI\\ventasAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\david\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\david\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",

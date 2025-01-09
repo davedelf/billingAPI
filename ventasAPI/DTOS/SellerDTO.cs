@@ -20,7 +20,6 @@ namespace ventasAPI.DTOS
         public long Document { get; set; }
         [Required]
         public Gender Gender { get; set; }
-        [Required]
-        public string ImageURL { get; set; }
+
     }
 }
