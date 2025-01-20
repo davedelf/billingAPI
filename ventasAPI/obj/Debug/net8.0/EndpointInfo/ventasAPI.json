@@ -1000,7 +1000,7 @@
     "schemas": {
       "CustomerDTO": {
         "required": [
-          "birthday",
+          "bornDate",
           "document",
           "email",
           "gender",
@@ -1017,7 +1017,7 @@
             "minLength": 1,
             "type": "string"
           },
-          "birthday": {
+          "bornDate": {
             "type": "string",
             "format": "date-time"
           },
@@ -1129,7 +1129,7 @@
       },
       "SellerDTO": {
         "required": [
-          "birthday",
+          "bornDate",
           "document",
           "email",
           "gender",
@@ -1146,7 +1146,7 @@
             "minLength": 1,
             "type": "string"
           },
-          "birthday": {
+          "bornDate": {
             "type": "string",
             "format": "date-time"
           },

@@ -75,12 +75,13 @@ function generateCustomersList(customers) {
             <tr>
                 <td>${name || "N/A"}</td>
                 <td>${lastName || "N/A"}</td>
-                <td>${bornDate || "N/A"}</td>
+                <td>${formatDate(bornDate)}</td>
                 <td>${email || "N/A"}</td>
                 <td>${document || "N/A"}</td>
                 <td>${gender === 0 ? "Male" : "Female"}</td>
             </tr>
         `;
+        console.log(customer);
   });
 
   table += `
@@ -153,4 +154,12 @@ function postCustomer(customer) {
       console.error("Failed to add customer:", error);
       alert("Failed to add customer.");
     });
+    
+}
+
+function formatDate(dateString){
+  if(!dateString) return "N/A"
+  let date=new Date(dateString)
+  if(isNaN(date)) return "N/A"
+  return date.toISOString().split("T")[0]
 }

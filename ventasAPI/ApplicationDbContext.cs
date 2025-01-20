@@ -41,28 +41,28 @@ namespace ventasAPI
             //Data Seeding
 
             //modelBuilder.Entity<Customer>().HasData(
-            //    new Customer { Id = 1, Name = "Ana", LastName = "Leiggener", Birthday = DateTime.Now, Email = "correo@correo.com", ImageURL = "", Gender = Gender.Female },
-            //    new Customer { Id = 2, Name = "Pedro", LastName = "Fimba", Birthday = DateTime.Now, Email = "correo@correo.com", ImageURL = "", Gender = Gender.Male },
-            //    new Customer { Id = 3, Name = "Maria", LastName = "Cáceres", Birthday = DateTime.Now, Email = "correo@correo.com", ImageURL = "", Gender = Gender.Female },
-            //    new Customer { Id = 4, Name = "Luis", LastName = "Vitton", Birthday = DateTime.Now, Email = "correo@correo.com", ImageURL = "", Gender = Gender.Male },
-            //    new Customer { Id = 5, Name = "Kamelia", LastName = "Nisrech", Birthday = DateTime.Now, Email = "correo@correo.com", ImageURL = "", Gender = Gender.Female },
-            //    new Customer { Id = 6, Name = "Diego", LastName = "Caró", Birthday = DateTime.Now, Email = "correo@correo.com", ImageURL = "", Gender = Gender.Male },
-            //    new Customer { Id = 7, Name = "Carina", LastName = "Montagne", Birthday = DateTime.Now, Email = "correo@correo.com", ImageURL = "", Gender = Gender.Female },
-            //    new Customer { Id = 8, Name = "Romeo", LastName = "Kombuchop", Birthday = DateTime.Now, Email = "correo@correo.com", ImageURL = "", Gender = Gender.Male },
-            //    new Customer { Id = 9, Name = "Silvia", LastName = "Winter", Birthday = DateTime.Now, Email = "correo@correo.com", ImageURL = "", Gender = Gender.Female }
+            //    new Customer { Id = 1, Name = "Ana", LastName = "Leiggener", BornDate = DateTime.Now, Email = "correo@correo.com", ImageURL = "", Gender = Gender.Female },
+            //    new Customer { Id = 2, Name = "Pedro", LastName = "Fimba", BornDate = DateTime.Now, Email = "correo@correo.com", ImageURL = "", Gender = Gender.Male },
+            //    new Customer { Id = 3, Name = "Maria", LastName = "Cáceres", BornDate = DateTime.Now, Email = "correo@correo.com", ImageURL = "", Gender = Gender.Female },
+            //    new Customer { Id = 4, Name = "Luis", LastName = "Vitton", BornDate = DateTime.Now, Email = "correo@correo.com", ImageURL = "", Gender = Gender.Male },
+            //    new Customer { Id = 5, Name = "Kamelia", LastName = "Nisrech", BornDate = DateTime.Now, Email = "correo@correo.com", ImageURL = "", Gender = Gender.Female },
+            //    new Customer { Id = 6, Name = "Diego", LastName = "Caró", BornDate = DateTime.Now, Email = "correo@correo.com", ImageURL = "", Gender = Gender.Male },
+            //    new Customer { Id = 7, Name = "Carina", LastName = "Montagne", BornDate = DateTime.Now, Email = "correo@correo.com", ImageURL = "", Gender = Gender.Female },
+            //    new Customer { Id = 8, Name = "Romeo", LastName = "Kombuchop", BornDate = DateTime.Now, Email = "correo@correo.com", ImageURL = "", Gender = Gender.Male },
+            //    new Customer { Id = 9, Name = "Silvia", LastName = "Winter", BornDate = DateTime.Now, Email = "correo@correo.com", ImageURL = "", Gender = Gender.Female }
 
             //);
 
             // modelBuilder.Entity<Seller>().HasData(
-            //    new Seller { Id = 1, Name = "Anahí", LastName = "Olmedo", Birthday = DateTime.Now, Email = "correo@correo.com", ImageURL = "", Gender = Gender.Female },
-            //    new Seller { Id = 2, Name = "Pablo", LastName = "Listmer", Birthday = DateTime.Now, Email = "correo@correo.com", ImageURL = "", Gender = Gender.Male },
-            //    new Seller { Id = 3, Name = "Macarena", LastName = "Ruthorf", Birthday = DateTime.Now, Email = "correo@correo.com", ImageURL = "", Gender = Gender.Female },
-            //    new Seller { Id = 4, Name = "Leandro", LastName = "Leiva", Birthday = DateTime.Now, Email = "correo@correo.com", ImageURL = "", Gender = Gender.Male },
-            //    new Seller { Id = 5, Name = "Karina", LastName = "Muller", Birthday = DateTime.Now, Email = "correo@correo.com", ImageURL = "", Gender = Gender.Female },
-            //    new Seller { Id = 6, Name = "David", LastName = "Correa", Birthday = DateTime.Now, Email = "correo@correo.com", ImageURL = "", Gender = Gender.Male },
-            //    new Seller { Id = 7, Name = "Celeste", LastName = "Gilbert", Birthday = DateTime.Now, Email = "correo@correo.com", ImageURL = "", Gender = Gender.Female },
-            //    new Seller { Id = 8, Name = "Roman", LastName = "Bosch", Birthday = DateTime.Now, Email = "correo@correo.com", ImageURL = "", Gender = Gender.Male },
-            //    new Seller { Id = 9, Name = "Silvana", LastName = "Becker", Birthday = DateTime.Now, Email = "correo@correo.com", ImageURL = "", Gender = Gender.Female }
+            //    new Seller { Id = 1, Name = "Anahí", LastName = "Olmedo", BornDate = DateTime.Now, Email = "correo@correo.com", ImageURL = "", Gender = Gender.Female },
+            //    new Seller { Id = 2, Name = "Pablo", LastName = "Listmer", BornDate = DateTime.Now, Email = "correo@correo.com", ImageURL = "", Gender = Gender.Male },
+            //    new Seller { Id = 3, Name = "Macarena", LastName = "Ruthorf", BornDate = DateTime.Now, Email = "correo@correo.com", ImageURL = "", Gender = Gender.Female },
+            //    new Seller { Id = 4, Name = "Leandro", LastName = "Leiva", BornDate = DateTime.Now, Email = "correo@correo.com", ImageURL = "", Gender = Gender.Male },
+            //    new Seller { Id = 5, Name = "Karina", LastName = "Muller", BornDate = DateTime.Now, Email = "correo@correo.com", ImageURL = "", Gender = Gender.Female },
+            //    new Seller { Id = 6, Name = "David", LastName = "Correa", BornDate = DateTime.Now, Email = "correo@correo.com", ImageURL = "", Gender = Gender.Male },
+            //    new Seller { Id = 7, Name = "Celeste", LastName = "Gilbert", BornDate = DateTime.Now, Email = "correo@correo.com", ImageURL = "", Gender = Gender.Female },
+            //    new Seller { Id = 8, Name = "Roman", LastName = "Bosch", BornDate = DateTime.Now, Email = "correo@correo.com", ImageURL = "", Gender = Gender.Male },
+            //    new Seller { Id = 9, Name = "Silvana", LastName = "Becker", BornDate = DateTime.Now, Email = "correo@correo.com", ImageURL = "", Gender = Gender.Female }
 
             //);
 

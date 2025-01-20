@@ -23,7 +23,7 @@ namespace ventasAPI.Models
         public Gender Gender { get; set; }
         [Required]
         [Column(TypeName ="date")]
-        public DateTime Birthday { get; set; }
+        public DateTime BornDate { get; set; }
         [Required]
         [EmailAddress]
         [MaxLength(80)]

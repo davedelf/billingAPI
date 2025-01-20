@@ -14,7 +14,7 @@ namespace ventasAPI.DTOS
         [Required]
         public string LastName { get; set; }
         [Required]
-        public DateTime Birthday { get; set; }
+        public DateTime BornDate { get; set; }
         [Required]
         [EmailAddress]
         [MaxLength(80)]

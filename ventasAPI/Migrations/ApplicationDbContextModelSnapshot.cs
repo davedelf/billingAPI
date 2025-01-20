@@ -30,7 +30,7 @@ namespace ventasAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("Birthday")
+                    b.Property<DateTime>("BornDate")
                         .HasColumnType("date");
 
                     b.Property<long>("Document")
@@ -162,7 +162,7 @@ namespace ventasAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("Birthday")
+                    b.Property<DateTime>("BornDate")
                         .HasColumnType("date");
 
                     b.Property<long>("Document")

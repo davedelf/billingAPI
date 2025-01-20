@@ -12,8 +12,8 @@ using ventasAPI;
 namespace ventasAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250102001553_ImageURLUser")]
-    partial class ImageURLUser
+    [Migration("20250120184528_bornDate")]
+    partial class bornDate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,7 +33,7 @@ namespace ventasAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("Birthday")
+                    b.Property<DateTime>("BornDate")
                         .HasColumnType("date");
 
                     b.Property<long>("Document")
@@ -165,7 +165,7 @@ namespace ventasAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("Birthday")
+                    b.Property<DateTime>("BornDate")
                         .HasColumnType("date");
 
                     b.Property<long>("Document")
