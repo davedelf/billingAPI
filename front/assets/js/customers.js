@@ -1,59 +1,110 @@
-const form = document.querySelector("#formulario");
+const form = document.querySelector("#form");
 const containerCustomers = document.querySelector("#customersTableContainer");
-const inputName = document.querySelector("#inputName");
-const inputLastName = document.querySelector("#inputLastName");
-const inputDocument = document.querySelector("#inputDocument");
-const inputEmail = document.querySelector("#inputEmail");
-const dtpBornDate = document.querySelector("#dtpBornDate");
-const radioMale = document.querySelector("#radioMale");
-const radioFemale = document.querySelector("#radioFemale");
 
+//Inputs
+const name = document.querySelector("#name");
+const lastName = document.querySelector("#lastName");
+const documentField = document.querySelector("#document");
+const email = document.querySelector("#email");
+const gender = document.querySelector("#gender");
+const bornDate = document.querySelector("#bornDate");
 // EVENTS
 document.addEventListener("DOMContentLoaded", () => {
   loadCustomers();
-});
-
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-
-  if (validateForm()) {
-    const newCustomer = createCustomerObject();
-    console.log("New Customer:", newCustomer);
-    postCustomer(newCustomer); // Llama a la función para enviar al servidor
-  }
+  validateForm();
 });
 
 // FUNCTIONS
 
-// Load customers from the server
-function loadCustomers() {
-  clearHTML();
-
-  getCustomers()
-    .then((customers) => {
-      generateCustomersList(customers);
-    })
-    .catch((error) => {
-      console.error("Failed to load customers:", error);
-      containerCustomers.innerHTML = `
-        <div class="alert alert-danger">Failed to load customers</div>
-      `;
-    });
+//Format Date
+function formatDate(dateString) {
+  if (!dateString) return "N/A";
+  let date = new Date(dateString);
+  if (isNaN(date)) return "N/A";
+  // return date.toISOString().split("T")[0];
+  return isNaN(date) ? "N/A" : date.toISOString().split("T")[0];
 }
 
 // Fetch customers from the server
 function getCustomers() {
   const url = "https://localhost:7071/api/customers/GetAll";
-  return fetch(url).then((response) => {
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    return response.json();
-  });
+  return fetch(url)
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error(`HTTP Error: ${res.status}`);
+      }
+      return res.json();
+    })
+    .catch((err) => {
+      console.log("Failed to fetch customers", err);
+      return [];
+    });
 }
 
+//Handler submit
+function handleFormSubmit(event) {
+  if (event) event.preventDefault();
+  const customer = createCustomerObject();
+  postCustomer(customer);
+  form.reset();
+}
+
+//Post customer
+function postCustomer(customer) {
+  const url = "https://localhost:7071/api/customers/Post";
+
+  fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(customer),
+  })
+    .then((res) => {
+      if (!res.ok) {
+        return res.text().then((errMsg) => {
+          throw new Error(errMsg);
+        });
+      }
+
+      const contentType = res.headers.get("content-type");
+      if (contentType && contentType.includes("application/json")) {
+        return res.json();
+      } else {
+        return res.text().then((text) => {
+          throw new Error(`Respuesta inesperada del servidor: ${text}`);
+        });
+      }
+    })
+    .then((dat) => {
+      console.log("Customer cerated successfully", dat);
+      form.reset();
+      loadCustomers();
+    })
+
+    .catch((err) => {
+      console.log(err.message);
+    });
+}
+
+// Create Customer Object
+function createCustomerObject() {
+  return {
+    name: name.value.trim(),
+    lastName: lastName.value.trim(),
+    document: parseInt(documentField.value.trim()),
+    email: email.value.trim(),
+    bornDate: bornDate.value,
+    gender: parseInt(gender.value) || 0,
+  };
+}
 // Generate customer table
-function generateCustomersList(customers) {
+function generateCustomersTable(customers) {
+  if (!customers.length) {
+    containerCustomers.innerHTML =
+      '<div class="alert alert-warning">No customers found</div>';
+    return;
+  }
   let table = `
      <table class="table table-bordered">
           <thead>
@@ -69,8 +120,7 @@ function generateCustomersList(customers) {
           <tbody>
     `;
 
-  customers.forEach((customer) => {
-    const { name, lastName, bornDate, email, document, gender } = customer;
+  customers.forEach(({ name, lastName, bornDate, email, document, gender }) => {
     table += `
             <tr>
                 <td>${name || "N/A"}</td>
@@ -81,7 +131,6 @@ function generateCustomersList(customers) {
                 <td>${gender === 0 ? "Male" : "Female"}</td>
             </tr>
         `;
-        console.log(customer);
   });
 
   table += `
@@ -94,72 +143,82 @@ function generateCustomersList(customers) {
 
 // Clear HTML content
 function clearHTML() {
+  // containerCustomers.innerHTML = "";
+  // while (containerCustomers.firstChild) {
+  //   containerCustomers.removeChild(containerCustomers.firstChild);
+  // }
   containerCustomers.innerHTML = "";
 }
 
-// Validate form inputs
-function validateForm() {
-  const name = inputName.value.trim();
-  const lastName = inputLastName.value.trim();
-  const email = inputEmail.value.trim();
-  const document = inputDocument.value.trim();
-  const bornDate = dtpBornDate.value;
-  const isMale = radioMale.checked;
-  const isFemale = radioFemale.checked;
+//Load customersList
+function loadCustomers() {
+  clearHTML();
 
-  if (!name || !lastName || !email || !document || !bornDate) {
-    alert("All fields are required.");
-    return false;
-  }
-
-  if (!isMale && !isFemale) {
-    alert("Please select a gender.");
-    return false;
-  }
-
-  return true;
-}
-
-// Create Customer Object
-function createCustomerObject() {
-  const name = inputName.value.trim();
-  const lastName = inputLastName.value.trim();
-  const email = inputEmail.value.trim();
-  const document = inputDocument.value.trim();
-  const bornDate = dtpBornDate.value.trim();
-  const gender = radioMale.checked ? 0 : 1;
-
-  return newCustomer={ name, lastName, bornDate, email, document, gender };
-}
-
-// Post customer to the server
-function postCustomer(customer) {
-  const url = "https://localhost:7071/api/customers";
-  fetch(url, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(customer),
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then((data) => {
-      alert("Customer added successfully!");
-      loadCustomers(); // Reload customers after adding
+  getCustomers()
+    .then((customers) => {
+      generateCustomersTable(customers);
     })
     .catch((error) => {
-      console.error("Failed to add customer:", error);
-      alert("Failed to add customer.");
+      console.error("Failed to load customers:", error);
+      containerCustomers.innerHTML = `
+        <div class="alert alert-danger">Failed to load customers</div>
+      `;
     });
-    
 }
 
-function formatDate(dateString){
-  if(!dateString) return "N/A"
-  let date=new Date(dateString)
-  if(isNaN(date)) return "N/A"
-  return date.toISOString().split("T")[0]
+// Validate form
+function validateForm() {
+  $("#form").validate({
+    rules: {
+      name: {
+        required: true,
+        minlength: 3,
+      },
+      lastName: {
+        required: true,
+        minlength: 3,
+      },
+      document: {
+        required: true,
+        digits: true,
+      },
+      email: {
+        required: true,
+        email: true,
+      },
+      bornDate: {
+        required: true,
+      },
+      gender: {
+        required: true,
+      },
+    },
+    messages: {
+      name: {
+        required: "Please enter a name",
+        minlength: "Name must be at least 3 characters long",
+      },
+      lastName: {
+        required: "Please enter a last name",
+        minlength: "Last name must be at least 3 characters long",
+      },
+      document: {
+        required: "Please enter a document number",
+        digits: "Please enter a valid document number",
+      },
+      email: {
+        required: "Please enter an email",
+        email: "Please enter a valid email",
+      },
+      bornDate: {
+        required: "Please select a born date",
+      },
+      gender: {
+        required: "Plase select a gender",
+      },
+    },
+    submitHandler: function () {
+      handleFormSubmit();
+    },
+  });
 }

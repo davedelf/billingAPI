@@ -27,22 +27,6 @@
   },
   {
     "ContainingType": "ventasAPI.Controllers.CustomerController",
-    "Method": "PostCustomer",
-    "RelativePath": "api/customers",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "customerDto",
-        "Type": "ventasAPI.DTOS.CustomerDTO",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "ventasAPI.Controllers.CustomerController",
     "Method": "DeleteCustomer",
     "RelativePath": "api/customers",
     "HttpMethod": "DELETE",
@@ -97,6 +81,22 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "ventasAPI.Controllers.CustomerController",
+    "Method": "PostCustomer",
+    "RelativePath": "api/customers/Post",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customerDto",
+        "Type": "ventasAPI.DTOS.CustomerDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "ventasAPI.Controllers.InvoiceController",

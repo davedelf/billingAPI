@@ -49,8 +49,8 @@ namespace ventasAPI.Controllers
 
         }
 
-        [HttpPost]
-        public async Task<ActionResult> PostCustomer(CustomerDTO customerDto)
+        [HttpPost("Post")]
+        public async Task<IActionResult> PostCustomer(CustomerDTO customerDto)
         {
             var existingCustomer = await _context.Customers.AnyAsync(c => c.Document == customerDto.Document);
             if (existingCustomer)
@@ -62,7 +62,7 @@ namespace ventasAPI.Controllers
             _context.Add(newCustomer);
             _context.Entry(newCustomer).State = EntityState.Added;
             await _context.SaveChangesAsync();
-            return Ok($"Cliente con documento {newCustomer.Document} registrado");
+            return Ok(newCustomer);
 
         }
 
