@@ -27,22 +27,6 @@
   },
   {
     "ContainingType": "ventasAPI.Controllers.CustomerController",
-    "Method": "DeleteCustomer",
-    "RelativePath": "api/customers",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "document",
-        "Type": "System.Int64",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "ventasAPI.Controllers.CustomerController",
     "Method": "UpdateCustomer",
     "RelativePath": "api/customers",
     "HttpMethod": "PUT",
@@ -54,6 +38,22 @@
         "Type": "ventasAPI.DTOS.CustomerDTO",
         "IsRequired": true
       },
+      {
+        "Name": "document",
+        "Type": "System.Int64",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ventasAPI.Controllers.CustomerController",
+    "Method": "DeleteCustomer",
+    "RelativePath": "api/customers/DeleteByDocument",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
       {
         "Name": "document",
         "Type": "System.Int64",

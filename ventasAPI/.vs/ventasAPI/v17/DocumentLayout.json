@@ -112,7 +112,7 @@
               "RelativeDocumentMoniker": "Controllers\\CustomerController.cs",
               "ToolTip": "C:\\Users\\david\\OneDrive\\Documentos\\billingAPI\\ventasAPI\\Controllers\\CustomerController.cs",
               "RelativeToolTip": "Controllers\\CustomerController.cs",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAowDgAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAC4AAAAAAAAAAAAgwEQAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-20T19:48:00.655Z",
               "EditorCaption": ""
@@ -163,8 +163,7 @@
               "RelativeToolTip": "DTOS\\CustomerDTO.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-02T00:11:28.396Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-02T00:11:28.396Z"
             },
             {
               "$type": "Document",

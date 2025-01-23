@@ -66,7 +66,7 @@ namespace ventasAPI.Controllers
 
         }
 
-        [HttpDelete]
+        [HttpDelete("DeleteByDocument")]
         public async Task<ActionResult> DeleteCustomer(long document)
         {
             var customer=await _context.Customers.AsTracking().FirstOrDefaultAsync(c=>c.Document == document);

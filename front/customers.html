@@ -24,6 +24,7 @@
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <!--JQuery Validation-->
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body>
@@ -41,32 +42,32 @@
                     </div>
                     <form name="form" id="form">
                         <div class="mb-3">
-                            <label for="" class="form-label">Name</label>
+                            <label for="name" class="form-label">Name</label>
                             <input type="text" class="form-control" name="name" id="name" aria-describedby="helpId"
                                 placeholder="" />
 
                         </div>
                         <div class="mb-3">
-                            <label for="" class="form-label">Last Name</label>
+                            <label for="lastName" class="form-label">Last Name</label>
                             <input type="text" class="form-control" name="lastName" id="lastName"
                                 aria-describedby="helpId" placeholder="" />
 
                         </div>
                         <div class="mb-3">
-                            <label for="" class="form-label">Document</label>
+                            <label for="document" class="form-label">Document</label>
                             <input type="text" class="form-control" name="document" id="document"
                                 aria-describedby="helpId" placeholder="" />
 
                         </div>
 
                         <div class="mb-3">
-                            <label for="" class="form-label">Email</label>
+                            <label for="email" class="form-label">Email</label>
                             <input type="text" class="form-control" name="email" id="email" aria-describedby="helpId"
                                 placeholder="" />
 
                         </div>
                         <div class=" mt-4">
-                            <label for="" class="form-label">Born Date</label>
+                            <label for="bornDate" class="form-label">Born Date</label>
                             <input class="form-control" type="date" id="bornDate" name="bornDate">
                         </div>
 
@@ -79,7 +80,7 @@
                                 <div class="col-6">
                                     <select class="form-select form-select-sm" aria-label="Small select example"
                                         id="gender" name="gender">
-                                        <option selected>Open this select menu</option>
+                                        <option selected>Select</option>
                                         <option value=0>Male</option>
                                         <option value=1>Female</option>
                                     </select>
