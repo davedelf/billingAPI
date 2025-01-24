@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // FUNCTIONS
 
+
 //Format Date
 function formatDate(dateString) {
   if (!dateString) return "N/A";
@@ -113,6 +114,33 @@ function postCustomer(customer) {
     });
 }
 
+//Delete customer
+function deleteCustomer(docum) {
+  const url = `https://localhost:7071/api/customers/DeleteByDocument?document=${docum}`;
+
+  fetch(url, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    }
+  })
+    .then((res) => {
+      if (!res.ok) {
+        return res.text().then((errMsg) => {
+          throw new Error(`Error al eliminar: ${res.status} - ${errMsg}`);
+        });
+      }
+      return res.text();
+    })
+    .then((dat) => {
+      console.log("Cliente eliminado correctamente:", dat);
+      loadCustomers(); // Recargar la lista de clientes después de eliminar
+    })
+    .catch((err) => {
+      console.error("Error eliminando cliente:", err);
+    });
+}
+
 // Create Customer Object
 function createCustomerObject() {
   return {
@@ -126,12 +154,12 @@ function createCustomerObject() {
 }
 // Generate customer table
 function generateCustomersTable(customers) {
-
   if (!customers.length) {
     containerCustomers.innerHTML =
       '<div class="alert alert-warning">No customers found</div>';
     return;
   }
+
   let table = `
      <table class="table table-bordered">
           <thead>
@@ -142,50 +170,13 @@ function generateCustomersTable(customers) {
               <th>Email</th>
               <th>Document</th>
               <th>Gender</th>
-
             </tr>
           </thead>
           <tbody>
     `;
 
   customers.forEach(({ name, lastName, bornDate, email, document, gender }) => {
-    // const divBtnUpdate=document.createElement("DIV")
-    // const btnUpdate=document.createElement("BUTTON")
-    // btnUpdate.classList.add(
-    //   "py-2",
-    //   "px-10",
-    //   "bg-indigo-600",
-    //   "hover:bg-indigo-700",
-    //   "text-white",
-    //   "font-bold",
-    //   "uppercase",
-    //   "rounded-lg",
-    //   "flex",
-    //   "items-center",
-    //   "gap-2"
-    // );
-
-    // divBtnUpdate.appendChild(btnUpdate)
-
-
-    // const divBtnDelete=document.createElement("DIV")
-    // const btnDelete=document.createElement("BUTTON")
-    // btnDelete.classList.add(
-    //   "py-2",
-    //   "px-10",
-    //   "bg-indigo-600",
-    //   "hover:bg-indigo-700",
-    //   "text-white",
-    //   "font-bold",
-    //   "uppercase",
-    //   "rounded-lg",
-    //   "flex",
-    //   "items-center",
-    //   "gap-2"
-    // );
-
-    // divBtnDelete.appendChild(btnDelete)
-
+   
     table += `
             <tr>
                 <td>${name || "N/A"}</td>
@@ -194,6 +185,12 @@ function generateCustomersTable(customers) {
                 <td>${email || "N/A"}</td>
                 <td>${document || "N/A"}</td>
                 <td>${gender === 0 ? "Male" : "Female"}</td>
+                <td>
+                  <button class="btn-update" data-document=${document}>Update</button>
+                </td>
+                <td>
+                  <button class="btn-delete" data-document=${document}>Delete</button>
+                </td>
 
             </tr>
         `;
@@ -205,6 +202,16 @@ function generateCustomersTable(customers) {
   `;
 
   containerCustomers.innerHTML = table;
+
+
+  //Button Events
+  document.querySelectorAll(".btn-delete").forEach(btn=>{
+    btn.addEventListener("click",e=>{
+      const documentId=Number(e.target.getAttribute("data-document"))
+      deleteCustomer(documentId)
+      loadCustomers()
+    })
+  })
 }
 
 // Clear HTML content
@@ -289,26 +296,5 @@ function validateForm() {
   });
 }
 
-function deleteCustomer(document){
 
-  const doc=parseInt(39176196)
-  const url=`https://localhost:7071/api/customers/DeleteByDocument/${doc}`
-  fetch(url,{
-    method:"DELETE"
-  })
-  .then(res=>{
-    if(!res.ok){
-      console.log("Error");
-      return
-    }
 
-    return res.json()
-  })
-  .then(dat=>{
-    console.log("Success");
-    loadCustomers()
-  })
-  .catch(err=>{
-    console.log(err);
-  })
-}
