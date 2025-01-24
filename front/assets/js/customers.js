@@ -1,21 +1,18 @@
 const form = document.querySelector("#form");
-const containerCustomers = document.querySelector("#customersTableContainer");
+const customersTableDiv = document.querySelector("#customersTableDiv");
 
-//Inputs
 const name = document.querySelector("#name");
 const lastName = document.querySelector("#lastName");
 const documentField = document.querySelector("#document");
 const email = document.querySelector("#email");
 const gender = document.querySelector("#gender");
 const bornDate = document.querySelector("#bornDate");
-// EVENTS
+const telephone = document.querySelector("#telephone");
+
 document.addEventListener("DOMContentLoaded", () => {
   loadCustomers();
   validateForm();
 });
-
-// FUNCTIONS
-
 
 //Format Date
 function formatDate(dateString) {
@@ -85,7 +82,7 @@ function postCustomer(customer) {
       successImg.src = "https://http.cat/images/200.jpg";
       divSuccess.appendChild(successImg);
 
-      containerCustomers.appendChild(divSuccess);
+      customersTableDiv.appendChild(divSuccess);
 
       form.reset();
       loadCustomers();
@@ -106,7 +103,7 @@ function postCustomer(customer) {
       divError.appendChild(errorImg);
       divError.appendChild(error);
 
-      containerCustomers.appendChild(divError);
+      customersTableDiv.appendChild(divError);
 
       setTimeout(() => {
         divError.remove();
@@ -122,7 +119,7 @@ function deleteCustomer(docum) {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
-    }
+    },
   })
     .then((res) => {
       if (!res.ok) {
@@ -150,12 +147,13 @@ function createCustomerObject() {
     email: email.value.trim(),
     bornDate: bornDate.value,
     gender: parseInt(gender.value) || 0,
+    telephone: telephone.value.trim(),
   };
 }
 // Generate customer table
 function generateCustomersTable(customers) {
   if (!customers.length) {
-    containerCustomers.innerHTML =
+    customersTableDiv.innerHTML =
       '<div class="alert alert-warning">No customers found</div>';
     return;
   }
@@ -166,25 +164,27 @@ function generateCustomersTable(customers) {
             <tr>
               <th>Name</th>
               <th>Last Name</th>
-              <th>Born Date</th>
-              <th>Email</th>
-              <th>Document</th>
               <th>Gender</th>
+              <th>Born Date</th>
+              <th>Document</th>
+              <th>Telephone</th>
+              <th>Email</th>
             </tr>
           </thead>
           <tbody>
     `;
 
-  customers.forEach(({ name, lastName, bornDate, email, document, gender }) => {
-   
-    table += `
+  customers.forEach(
+    ({ name, lastName, bornDate, email, document, gender, telephone }) => {
+      table += `
             <tr>
                 <td>${name || "N/A"}</td>
                 <td>${lastName || "N/A"}</td>
-                <td>${formatDate(bornDate)}</td>
-                <td>${email || "N/A"}</td>
-                <td>${document || "N/A"}</td>
                 <td>${gender === 0 ? "Male" : "Female"}</td>
+                <td>${formatDate(bornDate)}</td>
+                <td>${document || "N/A"}</td>
+                <td>${telephone || "N/A"}</td>
+                <td>${email || "N/A"}</td>
                 <td>
                   <button class="btn-update" data-document=${document}>Update</button>
                 </td>
@@ -194,24 +194,24 @@ function generateCustomersTable(customers) {
 
             </tr>
         `;
-  });
+    }
+  );
 
   table += `
     </tbody>
     </table>
   `;
 
-  containerCustomers.innerHTML = table;
-
+  customersTableDiv.innerHTML = table;
 
   //Button Events
-  document.querySelectorAll(".btn-delete").forEach(btn=>{
-    btn.addEventListener("click",e=>{
-      const documentId=Number(e.target.getAttribute("data-document"))
-      deleteCustomer(documentId)
-      loadCustomers()
-    })
-  })
+  document.querySelectorAll(".btn-delete").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      const documentId = Number(e.target.getAttribute("data-document"));
+      deleteCustomer(documentId);
+      loadCustomers();
+    });
+  });
 }
 
 // Clear HTML content
@@ -220,7 +220,7 @@ function clearHTML() {
   // while (containerCustomers.firstChild) {
   //   containerCustomers.removeChild(containerCustomers.firstChild);
   // }
-  containerCustomers.innerHTML = "";
+  customersTableDiv.innerHTML = "";
 }
 
 //Load customersList
@@ -233,7 +233,7 @@ function loadCustomers() {
     })
     .catch((error) => {
       console.error("Failed to load customers:", error);
-      containerCustomers.innerHTML = `
+      customersTableDiv.innerHTML = `
         <div class="alert alert-danger">Failed to load customers</div>
       `;
     });
@@ -265,6 +265,9 @@ function validateForm() {
       gender: {
         required: true,
       },
+      telephone: {
+        required: true,
+      },
     },
     messages: {
       name: {
@@ -289,6 +292,9 @@ function validateForm() {
       gender: {
         required: "Plase select a gender",
       },
+      telephone: {
+        required: "Please insert phone",
+      },
     },
     submitHandler: function () {
       handleFormSubmit();
@@ -296,5 +302,5 @@ function validateForm() {
   });
 }
 
-
-
+//Update customer
+function updateCustomer(docu) {}

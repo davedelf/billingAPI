@@ -28,6 +28,8 @@ namespace ventasAPI.Models
         [EmailAddress]
         [MaxLength(80)]
         public string Email { get; set; }
+        [Required]
+        public string Telephone { get; set; }
 
     }
 }

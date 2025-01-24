@@ -3,12 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\david\\OneDrive\\Documentos\\billingAPI\\ventasAPI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8CED5AF4-B0DC-4D68-A2E6-502A221C3BE8}|ventasAPI.csproj|c:\\users\\david\\onedrive\\documentos\\billingapi\\ventasapi\\controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8CED5AF4-B0DC-4D68-A2E6-502A221C3BE8}|ventasAPI.csproj|solutionrelative:controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8CED5AF4-B0DC-4D68-A2E6-502A221C3BE8}|ventasAPI.csproj|c:\\users\\david\\onedrive\\documentos\\billingapi\\ventasapi\\migrations\\20250124063718_addtelephone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8CED5AF4-B0DC-4D68-A2E6-502A221C3BE8}|ventasAPI.csproj|solutionrelative:migrations\\20250124063718_addtelephone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8CED5AF4-B0DC-4D68-A2E6-502A221C3BE8}|ventasAPI.csproj|c:\\users\\david\\onedrive\\documentos\\billingapi\\ventasapi\\dtos\\customerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8CED5AF4-B0DC-4D68-A2E6-502A221C3BE8}|ventasAPI.csproj|solutionrelative:dtos\\customerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8CED5AF4-B0DC-4D68-A2E6-502A221C3BE8}|ventasAPI.csproj|c:\\users\\david\\onedrive\\documentos\\billingapi\\ventasapi\\models\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8CED5AF4-B0DC-4D68-A2E6-502A221C3BE8}|ventasAPI.csproj|solutionrelative:models\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8CED5AF4-B0DC-4D68-A2E6-502A221C3BE8}|ventasAPI.csproj|c:\\users\\david\\onedrive\\documentos\\billingapi\\ventasapi\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8CED5AF4-B0DC-4D68-A2E6-502A221C3BE8}|ventasAPI.csproj|solutionrelative:models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8CED5AF4-B0DC-4D68-A2E6-502A221C3BE8}|ventasAPI.csproj|c:\\users\\david\\onedrive\\documentos\\billingapi\\ventasapi\\controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8CED5AF4-B0DC-4D68-A2E6-502A221C3BE8}|ventasAPI.csproj|solutionrelative:controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8CED5AF4-B0DC-4D68-A2E6-502A221C3BE8}|ventasAPI.csproj|c:\\users\\david\\onedrive\\documentos\\billingapi\\ventasapi\\models\\seller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -17,14 +29,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{8CED5AF4-B0DC-4D68-A2E6-502A221C3BE8}|ventasAPI.csproj|c:\\users\\david\\onedrive\\documentos\\billingapi\\ventasapi\\dtos\\sellerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8CED5AF4-B0DC-4D68-A2E6-502A221C3BE8}|ventasAPI.csproj|solutionrelative:dtos\\sellerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8CED5AF4-B0DC-4D68-A2E6-502A221C3BE8}|ventasAPI.csproj|c:\\users\\david\\onedrive\\documentos\\billingapi\\ventasapi\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8CED5AF4-B0DC-4D68-A2E6-502A221C3BE8}|ventasAPI.csproj|solutionrelative:models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8CED5AF4-B0DC-4D68-A2E6-502A221C3BE8}|ventasAPI.csproj|c:\\users\\david\\onedrive\\documentos\\billingapi\\ventasapi\\models\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8CED5AF4-B0DC-4D68-A2E6-502A221C3BE8}|ventasAPI.csproj|solutionrelative:models\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -107,19 +111,31 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "20250124063718_AddTelephone.cs",
+              "DocumentMoniker": "C:\\Users\\david\\OneDrive\\Documentos\\billingAPI\\ventasAPI\\Migrations\\20250124063718_AddTelephone.cs",
+              "RelativeDocumentMoniker": "Migrations\\20250124063718_AddTelephone.cs",
+              "ToolTip": "C:\\Users\\david\\OneDrive\\Documentos\\billingAPI\\ventasAPI\\Migrations\\20250124063718_AddTelephone.cs",
+              "RelativeToolTip": "Migrations\\20250124063718_AddTelephone.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-24T06:37:18.171Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "CustomerController.cs",
               "DocumentMoniker": "C:\\Users\\david\\OneDrive\\Documentos\\billingAPI\\ventasAPI\\Controllers\\CustomerController.cs",
               "RelativeDocumentMoniker": "Controllers\\CustomerController.cs",
               "ToolTip": "C:\\Users\\david\\OneDrive\\Documentos\\billingAPI\\ventasAPI\\Controllers\\CustomerController.cs",
               "RelativeToolTip": "Controllers\\CustomerController.cs",
-              "ViewState": "AgIAAC4AAAAAAAAAAAAgwEQAAAAlAAAAAAAAAA==",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAUwEcAAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-20T19:48:00.655Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-20T19:48:00.655Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "Seller.cs",
               "DocumentMoniker": "C:\\Users\\david\\OneDrive\\Documentos\\billingAPI\\ventasAPI\\Models\\Seller.cs",
               "RelativeDocumentMoniker": "Models\\Seller.cs",
@@ -131,7 +147,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 2,
               "Title": "Customer.cs",
               "DocumentMoniker": "C:\\Users\\david\\OneDrive\\Documentos\\billingAPI\\ventasAPI\\Models\\Customer.cs",
               "RelativeDocumentMoniker": "Models\\Customer.cs",
@@ -143,7 +159,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "SellerDTO.cs",
               "DocumentMoniker": "C:\\Users\\david\\OneDrive\\Documentos\\billingAPI\\ventasAPI\\DTOS\\SellerDTO.cs",
               "RelativeDocumentMoniker": "DTOS\\SellerDTO.cs",
@@ -161,19 +177,19 @@
               "RelativeDocumentMoniker": "DTOS\\CustomerDTO.cs",
               "ToolTip": "C:\\Users\\david\\OneDrive\\Documentos\\billingAPI\\ventasAPI\\DTOS\\CustomerDTO.cs",
               "RelativeToolTip": "DTOS\\CustomerDTO.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAACAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-02T00:11:28.396Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\Users\\david\\OneDrive\\Documentos\\billingAPI\\ventasAPI\\Models\\User.cs",
               "RelativeDocumentMoniker": "Models\\User.cs",
               "ToolTip": "C:\\Users\\david\\OneDrive\\Documentos\\billingAPI\\ventasAPI\\Models\\User.cs",
               "RelativeToolTip": "Models\\User.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAWAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-02T00:11:17.398Z"
             }
