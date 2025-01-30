@@ -9,8 +9,6 @@ namespace ventasAPI.Models
         public string Name { get; set; }
         public double Price { get; set; }
         public string Details { get; set; }
-        public DateTime ManufacturingDate { get; set; }
-        public DateTime ExpiryDate { get; set; }
         [Required]
         [MaxLength(10)]
         public string Code { get; set; }

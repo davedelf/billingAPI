@@ -13,11 +13,6 @@ namespace ventasAPI.DTOS
         [Required]
         public string Details { get; set; }
         [Required]
-        public DateTime ManufacturingDate { get; set; }
-        [Required]
-        public DateTime ExpiryDate { get; set; }
-
-        [Required]
         public string ImageURL { get; set; }
 
     }

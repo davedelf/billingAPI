@@ -1101,9 +1101,7 @@
       "ProductDTO": {
         "required": [
           "details",
-          "expiryDate",
           "imageURL",
-          "manufacturingDate",
           "name",
           "price"
         ],
@@ -1120,14 +1118,6 @@
           "details": {
             "minLength": 1,
             "type": "string"
-          },
-          "manufacturingDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "expiryDate": {
-            "type": "string",
-            "format": "date-time"
           },
           "imageURL": {
             "minLength": 1,
