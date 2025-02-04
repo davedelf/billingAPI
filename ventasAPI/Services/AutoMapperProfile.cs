@@ -18,6 +18,11 @@ namespace ventasAPI.Services
                 .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.Usuario.Username))
                 .ForMember(dest => dest.Password, opt => opt.MapFrom(src => src.Usuario.Password));
 
+            CreateMap<AdminDTO,Admin>();
+            CreateMap<Admin, AdminDTO>()
+                .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.Usuario.Username))
+                .ForMember(dest => dest.Password, opt => opt.MapFrom(src => src.Usuario.Password));
+
             CreateMap<Invoice, InvoiceDTO>();
             CreateMap<InvoiceDTO, Invoice>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore()); //Ignora el campo Id

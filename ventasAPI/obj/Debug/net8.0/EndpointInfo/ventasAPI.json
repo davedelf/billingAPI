@@ -5,6 +5,76 @@
     "version": "1.0"
   },
   "paths": {
+    "/api/administradores": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/administradores/Post": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/customers": {
       "get": {
         "tags": [
@@ -1105,6 +1175,58 @@
   },
   "components": {
     "schemas": {
+      "AdminDTO": {
+        "required": [
+          "bornDate",
+          "document",
+          "email",
+          "gender",
+          "lastName",
+          "name",
+          "telephone"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "lastName": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "bornDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "email": {
+            "maxLength": 80,
+            "minLength": 1,
+            "type": "string",
+            "format": "email"
+          },
+          "document": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "gender": {
+            "$ref": "#/components/schemas/Gender"
+          },
+          "telephone": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "username": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "Customer": {
         "required": [
           "bornDate",
