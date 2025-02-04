@@ -26,6 +26,10 @@ namespace ventasAPI.DTOS
         [Required]
         public string Telephone { get; set; }
 
+        //User
+        public string Username { get; set; }
+        public string Password { get; set; }
+
 
 
     }

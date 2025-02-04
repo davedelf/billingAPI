@@ -56,7 +56,12 @@ namespace ventasAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UsuarioId");
 
                     b.ToTable("Customers", (string)null);
                 });
@@ -186,9 +191,49 @@ namespace ventasAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("UsuarioId");
+
                     b.ToTable("Sellers", (string)null);
+                });
+
+            modelBuilder.Entity("ventasAPI.Models.Usuario", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Rol")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Usuarios");
+                });
+
+            modelBuilder.Entity("ventasAPI.Models.Customer", b =>
+                {
+                    b.HasOne("ventasAPI.Models.Usuario", "Usuario")
+                        .WithMany("Customers")
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("ventasAPI.Models.Invoice", b =>
@@ -229,6 +274,17 @@ namespace ventasAPI.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("ventasAPI.Models.Seller", b =>
+                {
+                    b.HasOne("ventasAPI.Models.Usuario", "Usuario")
+                        .WithMany("Sellers")
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Usuario");
+                });
+
             modelBuilder.Entity("ventasAPI.Models.Customer", b =>
                 {
                     b.Navigation("Invoices");
@@ -247,6 +303,13 @@ namespace ventasAPI.Migrations
             modelBuilder.Entity("ventasAPI.Models.Seller", b =>
                 {
                     b.Navigation("Invoices");
+                });
+
+            modelBuilder.Entity("ventasAPI.Models.Usuario", b =>
+                {
+                    b.Navigation("Customers");
+
+                    b.Navigation("Sellers");
                 });
 #pragma warning restore 612, 618
         }

@@ -577,5 +577,51 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ventasAPI.Controllers.UsuariosController",
+    "Method": "GetAllUsuarios",
+    "RelativePath": "api/usuarios/GetAll",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ventasAPI.DTOS.UsuarioDTO, ventasAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ventasAPI.Controllers.UsuariosController",
+    "Method": "GetUsuario",
+    "RelativePath": "api/usuarios/getUsuario{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "ventasAPI.Models.Usuario",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   }
 ]

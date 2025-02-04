@@ -522,3 +522,5 @@ C:\Users\david\Documents\Proyectos\billingAPI\ventasAPI\obj\Debug\net8.0\refint\
 C:\Users\david\Documents\Proyectos\billingAPI\ventasAPI\obj\Debug\net8.0\ventasAPI.pdb
 C:\Users\david\Documents\Proyectos\billingAPI\ventasAPI\obj\Debug\net8.0\ventasAPI.genruntimeconfig.cache
 C:\Users\david\Documents\Proyectos\billingAPI\ventasAPI\obj\Debug\net8.0\ref\ventasAPI.dll
+C:\Users\david\OneDrive\Documentos\billingAPI\ventasAPI\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\david\OneDrive\Documentos\billingAPI\ventasAPI\bin\Debug\net8.0\Newtonsoft.Json.dll

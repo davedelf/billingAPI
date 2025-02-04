@@ -6,29 +6,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ventasAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class bornDate : Migration
+    public partial class _ : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Customers",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Document = table.Column<long>(type: "bigint", nullable: false),
-                    Gender = table.Column<int>(type: "int", nullable: false),
-                    BornDate = table.Column<DateTime>(type: "date", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Customers", x => x.Id);
-                });
-
             migrationBuilder.CreateTable(
                 name: "Products",
                 columns: table => new
@@ -38,8 +20,6 @@ namespace ventasAPI.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<double>(type: "float", nullable: false),
                     Details = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ManufacturingDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ExpiryDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Code = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     ImageURL = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
@@ -49,21 +29,70 @@ namespace ventasAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sellers",
+                name: "Usuarios",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Username = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Rol = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Usuarios", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Customers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UsuarioId = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Document = table.Column<long>(type: "bigint", nullable: false),
                     Gender = table.Column<int>(type: "int", nullable: false),
                     BornDate = table.Column<DateTime>(type: "date", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false)
+                    Email = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
+                    Telephone = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Customers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Customers_Usuarios_UsuarioId",
+                        column: x => x.UsuarioId,
+                        principalTable: "Usuarios",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Sellers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UsuarioId = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Document = table.Column<long>(type: "bigint", nullable: false),
+                    Gender = table.Column<int>(type: "int", nullable: false),
+                    BornDate = table.Column<DateTime>(type: "date", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
+                    Telephone = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Sellers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Sellers_Usuarios_UsuarioId",
+                        column: x => x.UsuarioId,
+                        principalTable: "Usuarios",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -121,6 +150,11 @@ namespace ventasAPI.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Customers_UsuarioId",
+                table: "Customers",
+                column: "UsuarioId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_InvoiceDetails_InvoiceId",
                 table: "InvoiceDetails",
                 column: "InvoiceId");
@@ -139,6 +173,11 @@ namespace ventasAPI.Migrations
                 name: "IX_Invoices_SellerId",
                 table: "Invoices",
                 column: "SellerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Sellers_UsuarioId",
+                table: "Sellers",
+                column: "UsuarioId");
         }
 
         /// <inheritdoc />
@@ -158,6 +197,9 @@ namespace ventasAPI.Migrations
 
             migrationBuilder.DropTable(
                 name: "Sellers");
+
+            migrationBuilder.DropTable(
+                name: "Usuarios");
         }
     }
 }

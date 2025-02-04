@@ -998,10 +998,147 @@
           }
         }
       }
+    },
+    "/api/usuarios/getUsuario{id}": {
+      "get": {
+        "tags": [
+          "Usuarios"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Usuario"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Usuario"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Usuario"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/usuarios/GetAll": {
+      "get": {
+        "tags": [
+          "Usuarios"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UsuarioDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UsuarioDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UsuarioDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
+      "Customer": {
+        "required": [
+          "bornDate",
+          "document",
+          "email",
+          "gender",
+          "lastName",
+          "name",
+          "telephone"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "lastName": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "document": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "gender": {
+            "$ref": "#/components/schemas/Gender"
+          },
+          "bornDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "email": {
+            "maxLength": 80,
+            "minLength": 1,
+            "type": "string",
+            "format": "email"
+          },
+          "telephone": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "invoices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Invoice"
+            },
+            "nullable": true
+          },
+          "usuarioId": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
       "CustomerDTO": {
         "required": [
           "bornDate",
@@ -1042,6 +1179,14 @@
           "telephone": {
             "minLength": 1,
             "type": "string"
+          },
+          "username": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -1054,6 +1199,51 @@
         ],
         "type": "integer",
         "format": "int32"
+      },
+      "Invoice": {
+        "required": [
+          "date"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "status": {
+            "type": "boolean"
+          },
+          "code": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "sellerId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "seller": {
+            "$ref": "#/components/schemas/Seller"
+          },
+          "customerId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "customer": {
+            "$ref": "#/components/schemas/Customer"
+          },
+          "invoiceDetails": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvoiceDetail"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
       },
       "InvoiceDTO": {
         "type": "object",
@@ -1084,6 +1274,34 @@
         },
         "additionalProperties": false
       },
+      "InvoiceDetail": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "productId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "product": {
+            "$ref": "#/components/schemas/Product"
+          },
+          "quantify": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "invoiceId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "invoice": {
+            "$ref": "#/components/schemas/Invoice"
+          }
+        },
+        "additionalProperties": false
+      },
       "InvoiceDetailDTO": {
         "type": "object",
         "properties": {
@@ -1094,6 +1312,48 @@
           "quantify": {
             "type": "integer",
             "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Product": {
+        "required": [
+          "code",
+          "imageURL"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "price": {
+            "type": "number",
+            "format": "double"
+          },
+          "details": {
+            "type": "string",
+            "nullable": true
+          },
+          "code": {
+            "maxLength": 10,
+            "minLength": 1,
+            "type": "string"
+          },
+          "imageURL": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "invoiceDetails": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvoiceDetail"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -1122,6 +1382,74 @@
           "imageURL": {
             "minLength": 1,
             "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Rol": {
+        "enum": [
+          0,
+          1,
+          2
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "Seller": {
+        "required": [
+          "bornDate",
+          "document",
+          "email",
+          "gender",
+          "lastName",
+          "name",
+          "telephone"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "lastName": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "document": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "gender": {
+            "$ref": "#/components/schemas/Gender"
+          },
+          "bornDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "email": {
+            "maxLength": 80,
+            "minLength": 1,
+            "type": "string",
+            "format": "email"
+          },
+          "telephone": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "invoices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Invoice"
+            },
+            "nullable": true
+          },
+          "usuarioId": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -1161,6 +1489,58 @@
           },
           "gender": {
             "$ref": "#/components/schemas/Gender"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Usuario": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "username": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          },
+          "rol": {
+            "$ref": "#/components/schemas/Rol"
+          },
+          "customers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Customer"
+            },
+            "nullable": true
+          },
+          "sellers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Seller"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UsuarioDTO": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          },
+          "rol": {
+            "$ref": "#/components/schemas/Rol"
           }
         },
         "additionalProperties": false

@@ -58,18 +58,37 @@ namespace ventasAPI.Controllers
 
                 return BadRequest($"Ya existe un cliente con ese documento: {customerDto.Document}");
             }
-            var newCustomer = _mapper.Map<Customer>(customerDto);
+            var newUsuario = new Usuario
+            {
+                Username = customerDto.Username,
+                Password = customerDto.Password,
+                Rol = 0
+
+            };
+            var newCustomer = new Customer
+            {
+                Usuario = newUsuario,
+                Name = customerDto.Name,
+                LastName = customerDto.LastName,
+                Document = customerDto.Document,
+                Email=customerDto.Email,
+                Telephone=customerDto.Telephone,
+                BornDate = customerDto.BornDate,
+                Gender = customerDto.Gender,
+
+            };
+
             _context.Add(newCustomer);
             _context.Entry(newCustomer).State = EntityState.Added;
             await _context.SaveChangesAsync();
-            return Ok(newCustomer);
+            return Ok(_mapper.Map<CustomerDTO>(newCustomer));
 
         }
 
         [HttpDelete("DeleteByDocument")]
         public async Task<IActionResult> DeleteCustomer(long document)
         {
-            var customer=await _context.Customers.AsTracking().FirstOrDefaultAsync(c=>c.Document == document);
+            var customer = await _context.Customers.AsTracking().FirstOrDefaultAsync(c => c.Document == document);
             if (customer == null)
             {
                 return NotFound($"Documento no encontrado: {document}");
@@ -80,16 +99,16 @@ namespace ventasAPI.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult> UpdateCustomer(CustomerDTO customerDto,long document)
+        public async Task<ActionResult> UpdateCustomer(CustomerDTO customerDto, long document)
         {
-            var customer=await _context.Customers.AsTracking()
-                .FirstOrDefaultAsync(c=>c.Document==document);
+            var customer = await _context.Customers.AsTracking()
+                .FirstOrDefaultAsync(c => c.Document == document);
 
-            if(customer == null)
+            if (customer == null)
             {
                 return NotFound($"Cliente con documento {document} no encontrado");
             }
-            customer=_mapper.Map(customerDto, customer);
+            customer = _mapper.Map(customerDto, customer);
             customer.Document = document;
             await _context.SaveChangesAsync();
             return Ok("Cliente actualizado");
