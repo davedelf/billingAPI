@@ -1461,7 +1461,8 @@
           "email",
           "gender",
           "lastName",
-          "name"
+          "name",
+          "telephone"
         ],
         "type": "object",
         "properties": {
@@ -1489,6 +1490,18 @@
           },
           "gender": {
             "$ref": "#/components/schemas/Gender"
+          },
+          "telephone": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "username": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false

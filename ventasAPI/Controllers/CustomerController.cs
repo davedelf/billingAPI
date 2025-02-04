@@ -62,7 +62,7 @@ namespace ventasAPI.Controllers
             {
                 Username = customerDto.Username,
                 Password = customerDto.Password,
-                Rol = 0
+                Rol = Rol.Customer
 
             };
             var newCustomer = new Customer

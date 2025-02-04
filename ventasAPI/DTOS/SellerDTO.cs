@@ -20,6 +20,10 @@ namespace ventasAPI.DTOS
         public long Document { get; set; }
         [Required]
         public Gender Gender { get; set; }
+        [Required]
+        public string Telephone { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
 
     }
 }

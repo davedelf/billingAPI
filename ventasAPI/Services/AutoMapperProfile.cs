@@ -13,8 +13,10 @@ namespace ventasAPI.Services
                 .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.Usuario.Username))
                 .ForMember(dest => dest.Password, opt => opt.MapFrom(src => src.Usuario.Password));
 
-            CreateMap<Seller, SellerDTO>();
             CreateMap<SellerDTO, Seller>();
+            CreateMap<Seller, SellerDTO>()
+                .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.Usuario.Username))
+                .ForMember(dest => dest.Password, opt => opt.MapFrom(src => src.Usuario.Password));
 
             CreateMap<Invoice, InvoiceDTO>();
             CreateMap<InvoiceDTO, Invoice>()

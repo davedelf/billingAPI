@@ -56,11 +56,28 @@ namespace ventasAPI.Controllers
 
                 return BadRequest($"Already exists a seller with document {sellerDto.Document}");
             }
-            var newSeller = _mapper.Map<Seller>(sellerDto);
+            var newUsuario = new Usuario
+            {
+                Username = sellerDto.Username,
+                Password = sellerDto.Password,
+                Rol = Rol.Seller          
+            };
+            var newSeller = new Seller
+            {
+                Usuario = newUsuario,
+                Name =sellerDto.Name,
+                LastName = sellerDto.LastName,
+                Document = sellerDto.Document,
+                Email = sellerDto.Email,
+                Telephone =sellerDto.Telephone,
+                BornDate = sellerDto.BornDate,
+                Gender = sellerDto.Gender
+            };
             _context.Add(newSeller);
             _context.Entry(newSeller).State = EntityState.Added;
             await _context.SaveChangesAsync();
-            return Ok($"Seller with document {newSeller.Document} has been registered");
+            //return Ok($"Seller with document {newSeller.Document} has been registered");
+            return Ok(_mapper.Map<SellerDTO>(newSeller));
 
         }
 
