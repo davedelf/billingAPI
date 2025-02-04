@@ -623,5 +623,21 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "ventasAPI.Controllers.UsuariosController",
+    "Method": "IniciarSesion",
+    "RelativePath": "api/usuarios/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "optData",
+        "Type": "System.Object",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

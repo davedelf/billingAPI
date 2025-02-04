@@ -76,9 +76,8 @@ app.UseCors("AllowAll");
 
 app.UseHttpsRedirection();
 
-//Colocamos JWT
+//Habiltitamos JWT
 app.UseAuthentication();
-
 
 app.UseAuthorization();
 
